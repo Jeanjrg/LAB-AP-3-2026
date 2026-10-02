@@ -1,26 +1,38 @@
-print("---Rekapitulasi Transaksi Dins Store---")
-print("kerik '0' untuk menutup tokoh dan mengakhiri sesi.")
-print()
+
+print("Selamat datang di Kasir Minimarket!")
+
+def hitung_subtotal(harga, jumlah, adalah_member=False): 
+    subtotal = harga * jumlah
+    if adalah_member: #true
+        subtotal = subtotal * 0.9  #pelanggan hanya perlu membayar 90%
+    return int(subtotal) #return mengembalikan nilai ke fungsi yang di panggil
+
 while True:
-    input_jumlah = input("masukkan jumlah item: ")
-    try:
-        jumlah = int(input_jumlah)
-    except:
-        print("input harus berupa angka!")
-        print()
-        continue
-    if jumlah == 0:
-        print("toko ditutup. sesi rekap selesai.")
-        print()
+    status_member = input("Apakah Anda member? (ya/no): ").strip().lower()
+    if status_member == "ya" or status_member == "no":
         break
-    elif jumlah < 0:
-        print("jumlah tidak boleh negatif")
-        print()
-        continue
-    elif jumlah > 100:
-        print("jumlah tidak boleh negatif")
-        print()
-        continue
-    else:
-        print(f"transaksi {jumlah} item berhsil!")
-        print()
+    print("Input tidak valid, masukkan ya atau no.")
+member = status_member == "ya" 
+
+total = 0
+while True:
+    nama = input("Masukkan nama barang (kosongkan untuk selesai): ")
+    if nama == "":
+        break
+    while True:
+        try:
+            harga = int(input("Harga barang: "))
+            break
+        except:
+            print("Input tidak valid, harga harus berupa angka.")
+    while True:
+        try:
+            jumlah = int(input("Jumlah barang: "))
+            break
+        except:
+            print("Input tidak valid, jumlah harus berupa angka.")
+    subtotal = hitung_subtotal(harga, jumlah, member)
+    print(f"Subtotal {nama}: Rp{subtotal}")
+    total = total + subtotal
+
+print(f"Total belanja: Rp{total}")
