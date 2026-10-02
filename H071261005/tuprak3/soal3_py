@@ -1,0 +1,50 @@
+# Validasi input Maksimal Kursi Bus
+while True:
+    try:
+        kursi_input = input("Masukkan maksimal kursi bus: ")
+        sisa_kursi = int(kursi_input)
+        if sisa_kursi <= 0:
+            print("Jumlah kursi harus lebih dari 0!")
+            continue
+        break
+    except ValueError:
+        print("Input jumlah kursi harus berupa angka!")
+
+print("\nSistem Reservasi PO BUS Dimulai")
+total_pendapatan = 0
+
+# Loop selama sisa kursi masih ada
+while sisa_kursi > 0:
+    print(f"Sisa kursi: {sisa_kursi}")
+    try:
+        umur_input = input("Masukkan umur penumpang: ")
+        umur = int(umur_input)
+    except ValueError:
+        print("Input umur harus berupa angka!")
+        continue
+
+    # Cek kevalidan umur
+    if umur < 0:
+        print("Umur tidak valid!")
+        continue
+
+    # Penentuan Kategori dan Harga Tiket
+    if umur <= 5:
+        kategori = "Balita"
+        harga = 0
+        print(f"Kategori: {kategori} Tiket Gratis (Rp 0)")
+    elif umur <= 12:
+        kategori = "Anak"
+        harga = 50000
+        print(f"Kategori: {kategori} Harga: Rp {harga:,}".replace(',', '.'))
+    else:
+        kategori = "Dewasa"
+        harga = 100000
+        print(f"Kategori: {kategori} Harga: Rp {harga:,}".replace(',', '.'))
+
+    # Update sisa kursi dan total pendapatan
+    sisa_kursi -= 1
+    total_pendapatan += harga
+
+print("Semua Kursi Terisi")
+print(f"Total pendapatan perjalanan PO BUS kali ini: Rp {total_pendapatan}")
