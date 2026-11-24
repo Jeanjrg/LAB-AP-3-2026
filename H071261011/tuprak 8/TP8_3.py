@@ -27,21 +27,23 @@ def validasi(data):
     print(f"Jumlah Nomor valid: {data_valid}")
 
 print("\n=== Peembersihan Data Nomor Telepon ===\n")
-try:
-    jumlah_nomor = int(input("Masukkan jumlah data: "))
-    berapa_nomor = 0
+while True:
+    try:
+        jumlah_nomor = int(input("Masukkan jumlah data: "))
+        berapa_nomor = 0
 
-    while berapa_nomor < jumlah_nomor:
-        berapa_nomor += 1 
-        nomor_nya = input(f"\nNomor ke-{berapa_nomor}: ")
-        pattern = r"^[\d\s-]+$"
-        result = re.match(pattern, nomor_nya)
-        if result:
-            data_nomor.append(nomor_nya)
-        else:
-            print("Cara anda menginput nomor tidak benar")
-            berapa_nomor -= 1
-except:
-    print("Input yang anda masukka tidak valid!")
+        while berapa_nomor < jumlah_nomor:
+            berapa_nomor += 1 
+            nomor_nya = input(f"\nNomor ke-{berapa_nomor}: ")
+            pattern = r"^[\d\s-]+$"
+            result = re.match(pattern, nomor_nya)
+            if result:
+                data_nomor.append(nomor_nya)
+            else:
+                print("Cara anda menginput nomor tidak benar")
+                berapa_nomor -= 1
+        break
+    except:
+        print("Input yang anda masukka tidak valid!")
 
 validasi(data_nomor)

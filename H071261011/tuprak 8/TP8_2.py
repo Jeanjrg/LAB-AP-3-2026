@@ -2,7 +2,7 @@ import re
 
 name_valid = []
 def Validasi(name):
-    pattern = r"^[a-zA-Z]\w{4,12}$"
+    pattern = r"^[a-zA-Z]\w{4,11}$"
     result = re.match(pattern, name)
     if result:
         name_valid.append(name)

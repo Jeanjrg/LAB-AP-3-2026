@@ -2,7 +2,7 @@ import re
 
 def Validasi(nim, email, telepon):
 
-    pattern_nim = r"^H071[0-9]{6,6}$"
+    pattern_nim = r"^H071\d{6}$"
     result_nim = re.match(pattern_nim, nim)
     if result_nim:
         result_nim = "Valid"
@@ -17,9 +17,8 @@ def Validasi(nim, email, telepon):
         result_email = "Tidak Valid"
 
     pattern_telepon = r"[0-9]{10,13}$"
-    pattern_pembersih_telepon = r"-|s+"
-    replace = ""
-    result_pembersih_telepon = re.sub(pattern_pembersih_telepon, replace, telepon)
+    pattern_pembersih_telepon = r"-|\s+"
+    result_pembersih_telepon = re.sub(pattern_pembersih_telepon, "", telepon)
     result_telepon = re.match(pattern_telepon, result_pembersih_telepon)
     if result_telepon:
         result_telepon = "Valid"
